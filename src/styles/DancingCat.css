@@ -1,0 +1,288 @@
+.dancing-cat-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.cat-wrapper {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.cat-wrapper:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.cat-image {
+  width: 200px;
+  height: 200px;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+  transition: filter 0.3s ease;
+}
+
+/* Dancing Animation */
+.cat-wrapper.dancing .cat-image {
+  animation: dance 2s infinite ease-in-out;
+}
+
+@keyframes dance {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  10% {
+    transform: translateY(-20px) rotate(-5deg) scale(1.05);
+  }
+  20% {
+    transform: translateY(0) rotate(5deg) scale(1);
+  }
+  30% {
+    transform: translateY(-30px) rotate(-10deg) scale(1.1);
+  }
+  40% {
+    transform: translateY(0) rotate(10deg) scale(1);
+  }
+  50% {
+    transform: translateY(-25px) rotate(0deg) scale(1.08);
+  }
+  60% {
+    transform: translateY(0) rotate(-8deg) scale(1);
+  }
+  70% {
+    transform: translateY(-15px) rotate(8deg) scale(1.05);
+  }
+  80% {
+    transform: translateY(0) rotate(-5deg) scale(1);
+  }
+  90% {
+    transform: translateY(-10px) rotate(5deg) scale(1.02);
+  }
+}
+
+/* Additional spinning animation for dancing state */
+.cat-wrapper.dancing {
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 10px 40px rgba(255, 140, 66, 0.3);
+  }
+  50% {
+    box-shadow: 0 10px 60px rgba(255, 140, 66, 0.6);
+  }
+}
+
+/* Control Button */
+.control-button {
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  outline: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.control-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.control-button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.control-button.dancing {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  animation: buttonPulse 1s infinite ease-in-out;
+}
+
+@keyframes buttonPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Status Text */
+.status-text {
+  font-size: 1.3rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: 500;
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .cat-wrapper.dancing .cat-image,
+  .cat-wrapper.dancing,
+  .control-button.dancing {
+    animation: none;
+  }
+
+  .cat-wrapper.dancing .cat-image {
+    transform: scale(1.1);
+  }
+}
+
+/* Responsive Design - Mobile */
+@media (max-width: 480px) {
+  .dancing-cat-container {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+
+  .cat-wrapper {
+    width: 180px;
+    height: 180px;
+  }
+
+  .cat-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .control-button {
+    padding: 0.8rem 1.8rem;
+    font-size: 1rem;
+  }
+
+  .status-text {
+    font-size: 1.1rem;
+  }
+
+  .app h1 {
+    font-size: 2rem;
+  }
+
+  .app p {
+    font-size: 1rem;
+  }
+}
+
+/* Responsive Design - Tablet */
+@media (min-width: 481px) and (max-width: 768px) {
+  .dancing-cat-container {
+    padding: 1.5rem;
+    gap: 1.8rem;
+  }
+
+  .cat-wrapper {
+    width: 220px;
+    height: 220px;
+  }
+
+  .cat-image {
+    width: 180px;
+    height: 180px;
+  }
+
+  .control-button {
+    padding: 0.9rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  .status-text {
+    font-size: 1.2rem;
+  }
+
+  .app h1 {
+    font-size: 2.5rem;
+  }
+}
+
+/* Responsive Design - Desktop Large */
+@media (min-width: 1200px) {
+  .cat-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+
+  .cat-image {
+    width: 250px;
+    height: 250px;
+  }
+
+  .control-button {
+    padding: 1.2rem 3rem;
+    font-size: 1.3rem;
+  }
+
+  .status-text {
+    font-size: 1.5rem;
+  }
+
+  .app h1 {
+    font-size: 3.5rem;
+  }
+}
+
+/* Touch Device Optimization */
+@media (hover: none) and (pointer: coarse) {
+  .control-button {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  .cat-wrapper:hover {
+    transform: none;
+  }
+
+  .control-button:hover {
+    transform: none;
+  }
+
+  .control-button:active {
+    transform: scale(0.95);
+  }
+}
+
+/* Keyboard Hint */
+.keyboard-hint {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+  font-style: italic;
+  margin-top: 1rem;
+  animation: fadeIn 1s ease-in;
+}
+
+@media (max-width: 480px) {
+  .keyboard-hint {
+    font-size: 0.9rem;
+  }
+}
